@@ -1,62 +1,127 @@
-/* --- DYNAMIC COLLAGE SECTION --- */
-.collage {
-    /* Creates 3 columns on desktop, 2 on tablet, 1 on mobile */
-    columns: 3 300px; 
-    column-gap: 20px;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+/* --- GLOBAL STYLES & CENTRALIZATION --- */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fcfcfc;
+    text-align: center; /* Centers all text by default */
 }
 
-.collage img {
-    width: 100%; /* Spans the full width of the column */
-    height: auto; /* Maintains original aspect ratio */
-    margin-bottom: 20px; /* Spacing between images in the same column */
-    border-radius: 8px;
-    display: block;
-    
-    /* Optimization for huge files */
-    object-fit: contain; 
-    max-height: 80vh; /* Prevents any single image from being taller than the screen */
-    
-    /* Visual Style */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    background-color: #eee; /* Placeholder color while image loads */
+header {
+    background-color: #ffffff;
+    padding: 80px 20px;
+    border-bottom: 1px solid #eee;
 }
 
-.collage img:hover {
-    transform: scale(1.03);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-    cursor: pointer;
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    margin: 0;
+    color: #111;
 }
 
-/* --- BUTTON & NAVIGATION FIXES --- */
-.resume-btn {
-    background: #e67e22 !important; /* Forces the orange color visibility */
-    color: #ffffff !important;
-    padding: 12px 24px;
-    border-radius: 4px;
+.tagline {
+    font-size: 1.1rem;
+    color: #666;
+    margin: 10px 0 30px 0;
+    letter-spacing: 1px;
+}
+
+/* --- NAVIGATION & RESUME BUTTON --- */
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+nav a {
     text-decoration: none;
+    color: #111;
     font-weight: 700;
-    display: inline-block;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+.resume-btn {
+    background-color: #e67e22 !important;
+    color: #fff !important;
+    padding: 12px 25px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
     border: none;
-    transition: background 0.3s ease;
 }
 
 .resume-btn:hover {
-    background: #cf711f !important;
+    background-color: #cf711f !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* Responsive adjustment for columns */
+/* --- THE DYNAMIC COLLAGE --- */
+section {
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 0 20px;
+}
+
+h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    margin-bottom: 50px;
+}
+
+.collage-container {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start; /* Keeps original aspect ratios */
+}
+
+.collage-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1; /* Makes all 3 columns equal width */
+}
+
+.collage-column img {
+    width: 100%;
+    height: auto; /* Maintains Aspect Ratio */
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+}
+
+.collage-column img:hover {
+    transform: scale(1.02);
+}
+
+/* --- CONTACT SECTION --- */
+.contact-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+.contact-box {
+    background: white;
+    padding: 30px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
 @media (max-width: 800px) {
-    .collage {
-        columns: 2 250px;
+    .collage-container {
+        flex-direction: column; /* Stacks columns on top of each other on mobile */
     }
-}
-
-@media (max-width: 500px) {
-    .collage {
-        columns: 1;
+    .contact-info {
+        grid-template-columns: 1fr;
     }
+    h1 { font-size: 2.5rem; }
 }
