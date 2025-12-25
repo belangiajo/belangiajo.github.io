@@ -19,7 +19,7 @@ header {
 
 h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 3.5rem;
+    font-size: clamp(2rem, 8vw, 3.5rem); /* Dynamically sizes text */
     margin: 0;
     color: #111;
 }
@@ -47,10 +47,7 @@ nav a {
     font-weight: 700;
     text-transform: uppercase;
     font-size: 0.85rem;
-    transition: color 0.3s;
 }
-
-nav a:hover { color: #e67e22; }
 
 .resume-btn {
     background-color: #e67e22 !important;
@@ -63,29 +60,15 @@ nav a:hover { color: #e67e22; }
 
 .resume-btn:hover {
     background-color: #cf711f !important;
-    border-color: #cf711f !important;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(230, 126, 34, 0.3);
 }
 
-/* --- SECTIONS & COLLAGE --- */
+/* --- THE DYNAMIC COLLAGE & RESCALING --- */
 section {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 80px auto;
     padding: 0 20px;
-}
-
-h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
-    margin-bottom: 40px;
-}
-
-.bio {
-    max-width: 750px;
-    margin: 0 auto;
-    font-size: 1.15rem;
-    color: #444;
 }
 
 .collage-container {
@@ -102,11 +85,13 @@ h2 {
 }
 
 .collage-column img {
-    width: 100%;
-    height: auto;
+    width: 100%;           /* Rescales image width to fit the column */
+    height: auto;          /* Maintains original aspect ratio */
+    max-height: 70vh;      /* Limits height to 70% of user's screen */
+    object-fit: cover;     /* Ensures no stretching occurs */
+    
     border-radius: 4px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    display: block;
     transition: transform 0.3s ease;
 }
 
@@ -130,22 +115,14 @@ h2 {
     border-radius: 8px;
 }
 
-.contact-box a {
-    color: #e67e22;
-    text-decoration: none;
-    font-weight: bold;
-}
+.contact-box a { color: #e67e22; text-decoration: none; font-weight: bold; }
 
-footer {
-    padding: 60px 20px;
-    color: #bbb;
-    font-size: 0.8rem;
-}
+footer { padding: 60px 20px; color: #bbb; font-size: 0.8rem; }
 
-/* --- MOBILE --- */
+/* --- MOBILE RESPONSIVENESS --- */
 @media (max-width: 800px) {
-    h1 { font-size: 2.5rem; }
     .collage-container { flex-direction: column; }
+    .collage-column img { max-height: none; } /* On mobile, let them be full height */
     .contact-info { grid-template-columns: 1fr; }
     nav { flex-direction: column; gap: 15px; }
 }
